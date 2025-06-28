@@ -14,47 +14,139 @@ def equipment_level(equipment_choice):
 
 def weight_loss_plan(workout_plan_dict, workout_type, time_available, experience_level, equipment):
     """Generates a weight loss plan based on user preferences."""
+    cardio_options = [
+        "moderate running or cycling", "brisk walking on incline", "elliptical or stair climbing", "swimming laps", "dancing or cardio kickboxing"
+    ]
+    strength_options = [
+        f"circuit training with {equipment_level(equipment)} (e.g., squats, lunges, push-ups, planks)",
+        f"full-body dumbbell workout focusing on compound movements with {equipment_level(equipment)}",
+        f"bodyweight strength exercises (e.g., burpees, mountain climbers, tricep dips)",
+        f"resistance band and bodyweight exercises for core and glutes with {equipment_level(equipment)}",
+        f"HIIT-style strength intervals using {equipment_level(equipment)}"
+    ]
+    flexibility_options = [
+        "yoga flow for calorie burn and flexibility", "Pilates for core strength and lengthening",
+        "dynamic stretching followed by foam rolling", "active recovery with light stretching and mobility drills"
+    ]
+    hiit_options = [
+        "sprint intervals on treadmill or outdoors", "Tabata protocol with bodyweight exercises",
+        "plyometric drills and jump squats", "cycling or rowing machine intervals",
+        "metabolic conditioning using battle ropes or sled push"
+    ]
+    mixed_options = [
+        f"{time_available // 2} minutes of cardio and {time_available // 2} minutes of strength training",
+        f"alternating days of intense cardio and full-body strength with {equipment_level(equipment)}",
+        f"cross-training: combine a cardio machine with a strength circuit",
+        f"cardio + flexibility: {time_available // 2} mins running, {time_available // 2} mins yoga",
+        f"HIIT + strength: {time_available // 2} mins HIIT, {time_available // 2} mins bodyweight strength"
+    ]
+
+    day_index = 0
     for day in workout_plan_dict:
         if workout_type == 1:  # Cardio
-            workout_plan_dict[day] = [f"{time_available} minutes of moderate running or cycling"]
+            workout_plan_dict[day] = [f"{time_available} minutes of {cardio_options[day_index % len(cardio_options)]}"]
         elif workout_type == 2:  # Strength Training
-            workout_plan_dict[day] = [f"{time_available} minutes of circuit training with {equipment_level(equipment)}"]
+            workout_plan_dict[day] = [f"{time_available} minutes of {strength_options[day_index % len(strength_options)]}"]
         elif workout_type == 3:  # Flexibility
-            workout_plan_dict[day] = [f"{time_available} minutes of yoga or Pilates"]
+            workout_plan_dict[day] = [f"{time_available} minutes of {flexibility_options[day_index % len(flexibility_options)]}"]
         elif workout_type == 4:  # HIIT
-            workout_plan_dict[day] = [f"{time_available} minutes of high-intensity interval training"]
+            workout_plan_dict[day] = [f"{time_available} minutes of {hiit_options[day_index % len(hiit_options)]}"]
         elif workout_type == 5:  # Mixed
-            workout_plan_dict[day] = [f"{time_available // 2} minutes of cardio and {time_available // 2} minutes of strength training"]
+            workout_plan_dict[day] = [f"{mixed_options[day_index % len(mixed_options)]}"]
+        day_index += 1
     return workout_plan_dict
 
 def muscle_gain_plan(workout_plan_dict, workout_type, time_available, experience_level, equipment):
     """Generates a muscle gain plan based on user preferences."""
+    cardio_options = [
+        "light cardio (e.g., incline walking, cycling) paired with focused strength training",
+        "post-workout cardio for active recovery (15-20 mins)",
+        "warm-up cardio before heavy lifting", "steady-state cardio on rest days"
+    ]
+    strength_options = [
+        f"heavy lifting for chest & triceps with {equipment_level(equipment)} (e.g., bench press, overhead press, tricep extensions)",
+        f"heavy lifting for back & biceps with {equipment_level(equipment)} (e.g., pull-ups, rows, bicep curls)",
+        f"heavy lifting for legs & shoulders with {equipment_level(equipment)} (e.g., squats, deadlifts, lunges, shoulder press)",
+        f"full-body compound movements focusing on progressive overload with {equipment_level(equipment)}",
+        f"strength circuit emphasizing hypertrophy for major muscle groups with {equipment_level(equipment)}"
+    ]
+    flexibility_options = [
+        "dynamic stretching before workout, static stretching after", "foam rolling and mobility work for recovery",
+        "PNF stretching for muscle lengthening", "active recovery with light stretching and joint rotations"
+    ]
+    hiit_options = [
+        "strength-focused HIIT with compound lifts and short rests",
+        "plyometric HIIT drills for explosive power (e.g., box jumps, broad jumps)",
+        "kettlebell swings and other power movements in HIIT format",
+        "sprint intervals followed by bodyweight strength work"
+    ]
+    mixed_options = [
+        f"{time_available // 2} minutes of strength training and {time_available // 2} minutes of hypertrophy-focused exercises",
+        f"strength training split with short, intense cardio bursts",
+        f"focus on one major muscle group (e.g., legs) with {equipment_level(equipment)}, followed by light cardio",
+        f"upper/lower split days with specific compound and isolation exercises with {equipment_level(equipment)}",
+        f"powerlifting-style workout with accessory exercises"
+    ]
+
+    day_index = 0
     for day in workout_plan_dict:
         if workout_type == 1:  # Cardio
-            workout_plan_dict[day] = [f"{time_available // 3} minutes of light cardio and {time_available * 2 // 3} minutes of focused strength training with {equipment_level(equipment)}"]
+            workout_plan_dict[day] = [f"{time_available // 3} minutes of {cardio_options[day_index % len(cardio_options)]}"]
         elif workout_type == 2:  # Strength Training
-            workout_plan_dict[day] = [f"{time_available} minutes of heavy lifting with {equipment_level(equipment)} (e.g., compound exercises)"]
+            workout_plan_dict[day] = [f"{time_available} minutes of {strength_options[day_index % len(strength_options)]}"]
         elif workout_type == 3:  # Flexibility
-            workout_plan_dict[day] = [f"{time_available} minutes of dynamic stretching and light resistance training"]
+            workout_plan_dict[day] = [f"{time_available} minutes of {flexibility_options[day_index % len(flexibility_options)]}"]
         elif workout_type == 4:  # HIIT
-            workout_plan_dict[day] = [f"{time_available // 2} minutes of strength-focused HIIT and {time_available // 2} minutes of accessory work"]
+            workout_plan_dict[day] = [f"{time_available // 2} minutes of {hiit_options[day_index % len(hiit_options)]}"]
         elif workout_type == 5:  # Mixed
-            workout_plan_dict[day] = [f"{time_available // 2} minutes of strength training and {time_available // 2} minutes of hypertrophy-focused exercises"]
+            workout_plan_dict[day] = [f"{mixed_options[day_index % len(mixed_options)]}"]
+        day_index += 1
     return workout_plan_dict
+
 
 def maintenance_plan(workout_plan_dict, workout_type, time_available, experience_level, equipment):
     """Generates a maintenance plan based on user preferences."""
+    cardio_options = [
+        "moderate cardio (e.g., jogging, cycling, brisk walking)", "recreational sports (e.g., basketball, tennis)",
+        "hiking or trail walking", "dancing or active games", "swimming or water aerobics"
+    ]
+    strength_options = [
+        f"balanced strength and endurance training with {equipment_level(equipment)} (e.g., compound lifts with moderate weight)",
+        f"full-body resistance training with {equipment_level(equipment)} for muscle tone",
+        f"functional strength exercises to improve daily movement with {equipment_level(equipment)}",
+        f"circuit workout blending strength and cardio with {equipment_level(equipment)}",
+        f"core and stability training with {equipment_level(equipment)}"
+    ]
+    flexibility_options = [
+        "mixed stretching and light cardio for overall mobility", "Pilates or Barre for core and flexibility",
+        "restorative yoga or deep stretching for recovery", "active recovery walks with light stretching"
+    ]
+    hiit_options = [
+        "short HIIT session for cardiovascular health and metabolism boost",
+        "sprint intervals or jump rope drills", "bodyweight HIIT with active rest",
+        "circuit of cardio and bodyweight strength intervals"
+    ]
+    mixed_options = [
+        f"{time_available // 2} minutes of cardio and {time_available // 2} minutes of strength maintenance",
+        f"balanced workout with a mix of endurance and light resistance",
+        f"active recovery day with light cardio and stretching",
+        f"cross-training session (e.g., swim + bodyweight strength)",
+        f"light gym session with focus on form and controlled movements"
+    ]
+
+    day_index = 0
     for day in workout_plan_dict:
         if workout_type == 1:  # Cardio
-            workout_plan_dict[day] = [f"{time_available // 2} minutes of moderate cardio and {time_available // 2} minutes of strength maintenance with {equipment_level(equipment)}"]
+            workout_plan_dict[day] = [f"{time_available} minutes of {cardio_options[day_index % len(cardio_options)]}"]
         elif workout_type == 2:  # Strength Training
-            workout_plan_dict[day] = [f"{time_available} minutes of balanced strength and endurance training with {equipment_level(equipment)}"]
+            workout_plan_dict[day] = [f"{time_available} minutes of {strength_options[day_index % len(strength_options)]}"]
         elif workout_type == 3:  # Flexibility
-            workout_plan_dict[day] = [f"{time_available} minutes of mixed stretching and light cardio for mobility"]
+            workout_plan_dict[day] = [f"{time_available} minutes of {flexibility_options[day_index % len(flexibility_options)]}"]
         elif workout_type == 4:  # HIIT
-            workout_plan_dict[day] = [f"{time_available // 2} minutes of HIIT and {time_available // 2} minutes of endurance training or active recovery"]
+            workout_plan_dict[day] = [f"{time_available // 2} minutes of {hiit_options[day_index % len(hiit_options)]} and {time_available // 2} minutes of endurance training or active recovery"]
         elif workout_type == 5:  # Mixed
-            workout_plan_dict[day] = [f"{time_available // 2} minutes of cardio and {time_available // 2} minutes of strength maintenance"]
+            workout_plan_dict[day] = [f"{mixed_options[day_index % len(mixed_options)]}"]
+        day_index += 1
     return workout_plan_dict
 
 def generate_workout_plan(user_data):
@@ -85,12 +177,12 @@ def generate_workout_plan(user_data):
 
 st.set_page_config(page_title="Gym AI Workout Planner", layout="centered")
 
-st.title("🏋️‍♀️ Gym  Workout Planner")
+st.title("🏋️‍♀️ Gym AI Workout Planner")
 st.markdown("Enter your details to get a personalized weekly workout plan!")
 
 with st.form("workout_form"):
     st.header("Your Personal Information")
-    name = st.text_input("Your Name", placeholder="Ram Lakhan")
+    name = st.text_input("Your Name", placeholder="John Doe")
     age = st.number_input("Your Age", min_value=12, max_value=100, value=25)
     gender = st.selectbox("Your Gender", ["Male", "Female", "Other"])
     height = st.number_input("Your Height (cm)", min_value=100.0, max_value=250.0, value=170.0, step=0.1)
