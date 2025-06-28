@@ -85,12 +85,12 @@ def generate_workout_plan(user_data):
 
 st.set_page_config(page_title="Gym AI Workout Planner", layout="centered")
 
-st.title("🏋️‍♀️ Gym AI Workout Planner")
+st.title("🏋️‍♀️ Gym  Workout Planner")
 st.markdown("Enter your details to get a personalized weekly workout plan!")
 
 with st.form("workout_form"):
     st.header("Your Personal Information")
-    name = st.text_input("Your Name", placeholder="John Doe")
+    name = st.text_input("Your Name", placeholder="Ram Lakhan")
     age = st.number_input("Your Age", min_value=12, max_value=100, value=25)
     gender = st.selectbox("Your Gender", ["Male", "Female", "Other"])
     height = st.number_input("Your Height (cm)", min_value=100.0, max_value=250.0, value=170.0, step=0.1)
